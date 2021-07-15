@@ -1,10 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from "react-dom"
+import { Router, RouteComponentProps, Link } from "@reach/router"
+
+import TodoListScreen from "./TodoList";
+import TodoDetail from "./TodoDetail";
+import Home from "./Welcome";
+
+const App = () => (
+  <div>
+    <nav>
+      {/* Reference: https://reach.tech/router/example/basic */}
+      <Link to="/">Home</Link> {" | "}
+      <Link to="/todolist">Todo List</Link>
+      {/* <Link to="/tododetail/1">Todo Detail</Link> */}
+    </nav>
+    <Router>
+      <Home path="/" />
+      {/* Reference: https://reach.tech/router/typescript */}
+      <TodoListScreen path="/todolist" /> 
+      <TodoDetail path="/tododetail/:id" /> 
+    </Router>
+  </div>
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <App />, 
+  document.getElementById("root")
 );
